@@ -1,8 +1,6 @@
 // ignore_for_file: avoid_print, use_key_in_widget_constructors
 
 import 'package:flutter/material.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
-
 import 'bemvindo_page.dart';
 
 class Home extends StatelessWidget {
@@ -25,10 +23,31 @@ class Home extends StatelessWidget {
   //Variável formKey para identificação do formulario no aplicativo (login_app).
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
+  // Função de validação do campo login
+  String? validaLogin(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'O campo de login não pode estar vazio';
+    }
+    if (value.length < 3) {
+      return 'O login deve ter pelo menos 3 caracteres';
+    }
+    return null; // Retorna null se estiver válido
+  }
+
+  // Função de validação do campo senha
+  String? validaSenha(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'O campo de senha não pode estar vazio';
+    }
+    if (value.length < 5) {
+      return 'A senha deve ter pelo menos 5 caracteres';
+    }
+    return null; // Retorna null se estiver válido
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //Layout do Aplicativo
       appBar: AppBar(
         title: const Text('LoginApp'),
       ),
@@ -39,19 +58,6 @@ class Home extends StatelessWidget {
     );
   }
 
-  //Criação de notificações no aplicativo Login_App
-   /*void showLongToast(String message) {
-     FlutterToast.showToast(
-         msg: message,
-         toastLength: Toast.LENGTH_LONG,
-         gravity: ToastGravity.BOTTOM,
-         timeInSecForIosWeb: 1,
-         backgroundColor: Colors.blue,
-         textColor: Colors.white,
-         fontSize: 16.0);
-   }*/
-
-  //Construção do corpo do aplicativo loginapp.
   Widget myBody(BuildContext context) {
     return Form(
       key: formKey,
@@ -65,53 +71,45 @@ class Home extends StatelessWidget {
     );
   }
 
-  //Widget TextFormField:
-  //componente para a entrada do usuario.
   TextFormField textFormFieldLogin() {
     return TextFormField(
       controller: tecLogin,
-      //validator: validaLogin,
+      validator: validaLogin,  // Referência para a função de validação de login
       keyboardType: TextInputType.text,
       style: const TextStyle(color: Colors.black),
       decoration: const InputDecoration(
-          labelText: "Login", //texto do Login que acompanha o textForm.
-          labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
-          hintText: "Informe o login" //texto de dica para o usuario.
-
-          ),
+        labelText: "Login",
+        labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
+        hintText: "Informe o login",
+      ),
     );
   }
 
-  //Widget TextFormField:
-  //componente para a entrada da senha.
   TextFormField textFormFieldSenha() {
     return TextFormField(
       controller: tecSenha,
-      //validator: validaSenha,
-      obscureText: true, //ocultar o campo senha.
+      validator: validaSenha,  // Referência para a função de validação de senha
+      obscureText: true,
       keyboardType: TextInputType.text,
       style: const TextStyle(color: Colors.black),
       decoration: const InputDecoration(
-          labelText: "Senha", //texto do Login que acompanha o textForm.
-          labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
-          hintText: "Informe a senha" //texto de dica para o usuario.
-          ),
+        labelText: "Senha",
+        labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
+        hintText: "Informe a senha",
+      ),
     );
   }
 
-  //componente (Widget) Container containerButtonEntrar():
-  //define um container com um botão para o formulario de Login
   Container containerButtonEntrar(BuildContext context) {
     return Container(
       height: 40.0,
       margin: const EdgeInsets.only(top: 10.0),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue, //cor de fundo do botão
-          foregroundColor: Colors.white, //cor do texto do botão
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
         ),
         onPressed: () {
-          //Método onClickLogin que aciona o botão Entrar.
           onClickLogin(context);
         },
         child: const Text(
@@ -122,50 +120,28 @@ class Home extends StatelessWidget {
     );
   }
 
-  //Método onClickLogin responsavel pelo controle do formulario Login acionado
-  //botão Entrar.
   void onClickLogin(BuildContext context) {
-    //Capturar os conteudos textuais dos Widgets tecLogin e tecSenha para suas
-    //respectivas variaveis login e senha.
     final String login = tecLogin.text;
     final String senha = tecSenha.text;
 
-    //Exibe no terminal (Debug Console) os valores de login e senha.
     print("Login: $login");
     print("Senha: $senha");
 
-    //Testar a validade do estado corrente do formulario, atraves da sua chave formKey.
     if (!formKey.currentState!.validate()) {
       return;
     }
 
-    //Testar se os campos login e senha correspondem de forma verdaadeira aos
-    //seus campo definidos.
     if (login.contains(defLogin) && senha.contains(defSenha)) {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                BemVindo(nome: nomeEntrada, sobrenome: sobrenomeEntrada),
-          ));
+        context,
+        MaterialPageRoute(
+          builder: (context) =>
+              BemVindo(nome: nomeEntrada, sobrenome: sobrenomeEntrada),
+        ),
+      );
 
-      //Mensagem no DebugConsole (ao lado do Terminal).
       print("Login efetuado com Sucesso!!!");
-
-      //Mostrar a notificação positiva ao usuario
-      //showLongToast("Login efetuado com Sucesso!!!");
-    }
-
-    //Caso contrario, sejam falsos os dados de login e senha e/ou ambos sejam
-    //vazios, informa ao usuario que o login e a senha são invalidos.
-    else {
-      //retorna para o contexto atual (a tela preincipal).
-      Navigator.pop(context);
-
-      //Mensagem no DebugConsole.
-      print("Falha no Login!!!");
-
-      //Mostra uma notificação negativa ao usuario.
+    } else {
       print("Falha no Login!!!");
     }
   }

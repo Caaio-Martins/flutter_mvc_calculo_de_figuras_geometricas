@@ -24,42 +24,35 @@ class _SplashState extends State<Splash> {
     });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    body: SafeArea(  // Envolve todo o conteúdo em SafeArea
+      child: Center(
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 5.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              // Adicionando as imagens dos logos
-              Image.asset('assets/images/logo_cps.png', height: 100), // Logo CPS
+              Image.asset('assets/images/logo_cps.png', height: 100),
               const SizedBox(height: 20),
-              Image.asset('assets/images/logo_fatec.jpg', height: 100), // Logo Fatec Matão
+              Image.asset('assets/images/logo_fatec.jpg', height: 100),
               const SizedBox(height: 20),
-              Image.asset('assets/images/logo_curso.png', height: 100), // Logo Curso DSM
+              Image.asset('assets/images/logo_curso.png', height: 100),
               const SizedBox(height: 40),
-              
-              // Texto existente "Loading..." da Splash Screen
               const Text(
-                'Loading...', // Texto da Splash Screen
+                'Loading...',
                 style: TextStyle(
                   fontSize: 22.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               const SizedBox(height: 35.0),
-              
-              // Indicador de progresso circular
               const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation(Colors.red),
                 strokeWidth: 11.0,
               ),
-              
               const SizedBox(height: 60.0),
-              
-              // Texto final da Splash Screen
               const Text(
                 'Caaio-Martins',
                 style: TextStyle(
@@ -70,25 +63,25 @@ class _SplashState extends State<Splash> {
               const Text(
                 'FelipeDonizete',
                 style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Arial'
-                ),
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Arial'),
               ),
               const Text(
                 'JoséVictor',
                 style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Arial'
-                ),
+                    fontSize: 22.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Arial'),
               ),
             ],
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }
 
 
