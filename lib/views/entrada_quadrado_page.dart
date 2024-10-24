@@ -12,7 +12,7 @@ class EntradaQuadradoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Cálculo do Dados: Quadrado'),
+        title: const Text('Cálculo do Quadrado'),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back), // Ícone de voltar
           onPressed: () {
@@ -34,7 +34,7 @@ class EntradaQuadradoPage extends StatelessWidget {
                 decoration: const InputDecoration(
                   labelText: "Lado:",
                   labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
-                  hintText: "Entre com o valor da altura",
+                  hintText: "Entre com o valor do lado",
                 ),
                 keyboardType: TextInputType.number,
               ),

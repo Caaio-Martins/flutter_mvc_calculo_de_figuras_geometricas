@@ -62,7 +62,7 @@ class EntradaTrapezioPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     labelText: "Lado 1:",
                     labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
-                    hintText: "Entre com o valor da base"),
+                    hintText: "Entre com o valor do lado 1"),
                 keyboardType: TextInputType.number,
               ),
               TextField(
@@ -70,7 +70,7 @@ class EntradaTrapezioPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     labelText: "Lado 2:",
                     labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
-                    hintText: "Entre com o valor da base"),
+                    hintText: "Entre com o valor do lado 2"),
                 keyboardType: TextInputType.number,
               ),
               ElevatedButton(

@@ -9,15 +9,70 @@ class ResultadoEsferaPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Resultados: Esfera')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: <Widget>[
-            Text("Raio: ${esferaController.esfera?.raio}"),
-            Text("Área da Superfície: ${esferaController.getAreaSuperficie()}"),
-            Text("Volume: ${esferaController.getVolume()}"),
-          ],
+      appBar: AppBar(
+        title: const Text('Resultados Finais'),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Container(
+                alignment: Alignment.centerLeft,
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Raio:\n',
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    children: [
+                      TextSpan(
+                        text: '${esferaController.esfera?.raio}',
+                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Área:\n',
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    children: [
+                      TextSpan(
+                        text: '${esferaController.getAreaSuperficie()}',
+                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(height: 16.0),
+              Container(
+                alignment: Alignment.centerLeft,
+                child: RichText(
+                  text: TextSpan(
+                    text: 'Volume:\n',
+                    style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
+                    children: [
+                      TextSpan(
+                        text: '${esferaController.getVolume()}',
+                        style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.normal),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
