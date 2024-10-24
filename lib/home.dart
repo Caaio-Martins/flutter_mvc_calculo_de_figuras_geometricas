@@ -49,23 +49,28 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('LoginApp'),
+        title: const Text('Login'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(12.0),
         child: myBody(context),
       ),
     );
   }
 
-  Widget myBody(BuildContext context) {
+    Widget myBody(BuildContext context) {
     return Form(
       key: formKey,
-      child: ListView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
+          const Spacer(), // Espaço antes do conteúdo
           textFormFieldLogin(),
+          const SizedBox(height: 20), // Espaço entre os campos de login e senha
           textFormFieldSenha(),
+          const SizedBox(height: 20), // Espaço entre os campos e o botão
           containerButtonEntrar(context),
+          const Spacer(), // Espaço depois do conteúdo
         ],
       ),
     );
@@ -74,12 +79,12 @@ class Home extends StatelessWidget {
   TextFormField textFormFieldLogin() {
     return TextFormField(
       controller: tecLogin,
-      validator: validaLogin,  // Referência para a função de validação de login
+      validator: validaLogin, // Referência para a função de validação de login
       keyboardType: TextInputType.text,
       style: const TextStyle(color: Colors.black),
       decoration: const InputDecoration(
-        labelText: "Login",
-        labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
+        labelText: "Usuário",
+        labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
         hintText: "Informe o login",
       ),
     );
@@ -88,13 +93,13 @@ class Home extends StatelessWidget {
   TextFormField textFormFieldSenha() {
     return TextFormField(
       controller: tecSenha,
-      validator: validaSenha,  // Referência para a função de validação de senha
+      validator: validaSenha, // Referência para a função de validação de senha
       obscureText: true,
       keyboardType: TextInputType.text,
       style: const TextStyle(color: Colors.black),
       decoration: const InputDecoration(
         labelText: "Senha",
-        labelStyle: TextStyle(fontSize: 30.0, color: Colors.black),
+        labelStyle: TextStyle(fontSize: 20.0, color: Colors.black),
         hintText: "Informe a senha",
       ),
     );
@@ -131,7 +136,8 @@ class Home extends StatelessWidget {
       return;
     }
 
-    if (login.contains(defLogin) && senha.contains(defSenha)) {
+    // Comparação exata com o operador `==`
+    if (login == defLogin && senha == defSenha) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -143,6 +149,24 @@ class Home extends StatelessWidget {
       print("Login efetuado com Sucesso!!!");
     } else {
       print("Falha no Login!!!");
+      // Exibindo um alerta de falha no login
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Erro'),
+            content: const Text('Login ou senha incorretos. Tente novamente.'),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // Fechar o alerta
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }

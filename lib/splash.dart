@@ -15,74 +15,117 @@ class _SplashState extends State<Splash> {
     super.initState();
 
     // Navegar para a tela 'Home' após 5 segundos
-    Timer(const Duration(seconds: 5), () {
+    Timer(const Duration(seconds: 10), () {
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => Home(),
-          ));
+        context,
+        MaterialPageRoute(
+          builder: (context) => Home(),
+        ),
+      );
     });
   }
 
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-    body: SafeArea(  // Envolve todo o conteúdo em SafeArea
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 80.0, horizontal: 5.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset('assets/images/logo_cps.png', height: 100),
-              const SizedBox(height: 20),
-              Image.asset('assets/images/logo_fatec.jpg', height: 100),
-              const SizedBox(height: 20),
-              Image.asset('assets/images/logo_curso.png', height: 100),
-              const SizedBox(height: 40),
-              const Text(
-                'Loading...',
-                style: TextStyle(
-                  fontSize: 22.0,
-                  fontWeight: FontWeight.bold,
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(vertical: 80.0, horizontal: 5.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Image.asset('assets/images/logo_cps.png', height: 100),
+                  const SizedBox(height: 20),
+                  Image.asset('assets/images/logo_fatec.jpg', height: 100),
+                  const SizedBox(height: 20),
+                  Image.asset('assets/images/logo_curso.png', height: 100),
+                  const SizedBox(height: 20),
+                  const Center(
+                    child: Text(
+                      'Sistema \n Figuras Geométricas',
+                      style: TextStyle(
+                        fontSize: 30.0,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Arial',
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  const Text(
+                    'Loading...',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 35.0),
+                  const CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation(Colors.blue),
+                    strokeWidth: 6.0,
+                  ),
+                ],
+              ),
+            ),
+            const Expanded(
+              child: Align(
+                alignment: Alignment
+                    .bottomCenter, // Alinhando os textos ao final da tela
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      bottom: 20.0), // Distância dos textos até o rodapé
+                  child: Column(
+                    mainAxisSize: MainAxisSize
+                        .min, // Ocupa o menor espaço possível no rodapé
+                    children: [
+                      Text(
+                        'Caaio-Martins',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
+                      ),
+                      Text(
+                        'FelipeDonizete',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
+                      ),
+                      Text(
+                        'JoséVictor',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
+                      ),
+                      Text(
+                        'Versão 1.0',
+                        style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Arial',
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              const SizedBox(height: 35.0),
-              const CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(Colors.red),
-                strokeWidth: 11.0,
-              ),
-              const SizedBox(height: 60.0),
-              const Text(
-                'Caaio-Martins',
-                style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Arial'),
-              ),
-              const Text(
-                'FelipeDonizete',
-                style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Arial'),
-              ),
-              const Text(
-                'JoséVictor',
-                style: TextStyle(
-                    fontSize: 22.0,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Arial'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
-    ),
-  );
+    );
+  }
 }
 
-}
+
 
 
 
